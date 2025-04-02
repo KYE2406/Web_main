@@ -192,8 +192,11 @@
                 }
             }
         </style>
+        <script type="text/javascript" src="js/Basic_js_test.js"></script>
+        <script type="text/javascript" defer src="js/search.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </head>
-    <body style="background-color: white;">
+    <body style="background-color: white;" onload="pop_up();">
         <nav class="navbar navbar-expand-lg bg-black fixed-top">
             <div class="container-fluid">
                 <div class="logo-container">
@@ -273,15 +276,10 @@
                     <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                   </li>-->
                 </ul>
-                <form class="d-flex mt-3" role="search">
-                    <div class="position-relative w-100" style="background-color: #333; border-radius: 15px; min-width: 300px; min-height: 45px;">
-                        <input class="form-control bg-transparent border-0 text-white" type="search" placeholder="" aria-label="Search" style="padding-left: 50px; outline: none; box-shadow: none !important; height: 100%;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="position-absolute" viewBox="0 0 16 16" style="left: 15px; top: 50%; transform: translateY(-50%); z-index: 2;">
-                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                          </svg>
-                        </div>
-                        <button class="btn btn-success d-none" type="submit">Search</button>
-                      </form>          
+                <form class="d-flex" role="search" onsubmit="return googleSearch();">
+                  <input class="form-control me-2" id="search_input" name="q" type="search" placeholder="키워드 입력" aria-label="Search">
+                  <button class="btn btn-outline-success" id="search_btn" type="submit">검색하기</button>
+                </form>          
               </div>
             </div>
           </nav>
@@ -309,6 +307,5 @@
         <div style="display: flex; justify-content: center;">
             <h3 style="font-size: 24px; font-weight: bold; font-style: italic; color: white; font-family: '굴림';">라이엇 게임 회사 정보 2024년 X월 작성됨</h3>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
 </html>
