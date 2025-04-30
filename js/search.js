@@ -1,24 +1,38 @@
 //검색창 애니메이션션
-  document.addEventListener("DOMContentLoaded", function () {
-    const searchBtn = document.getElementById("search_btn");
-    const searchInput = document.getElementById("search_input");
-    const wrapper = document.querySelector(".search-wrapper");
+document.addEventListener("DOMContentLoaded", function () {
+  const searchBtn = document.getElementById("search_btn");
+  const searchInput = document.getElementById("search_input");
+  const wrapper = document.querySelector(".search-wrapper");
+  const closeBtn = document.getElementById("close_btn");
 
-    let expanded = false;
+  let expanded = false;
 
-    searchBtn.addEventListener("click", function () {
-      if (!expanded) {
-        searchInput.classList.add("show");
-        wrapper.classList.add("expanded");
-        expanded = true;
-        setTimeout(() => searchInput.focus(), 300);
-      } else {
-        searchInput.classList.remove("show");
-        wrapper.classList.remove("expanded");
-        expanded = false;
-      }
-    });
+  searchBtn.addEventListener("click", function () {
+    if (!expanded) {
+      searchInput.classList.add("show");
+      wrapper.classList.add("expanded");
+      expanded = true;
+      setTimeout(() => searchInput.focus(), 300);
+    } else {
+      searchInput.classList.remove("show");
+      wrapper.classList.remove("expanded");
+      expanded = false;
+    }
   });
+
+  closeBtn.addEventListener("click", function () {
+    if (searchInput.value.trim() !== "") {
+      // 입력값이 있을 때: 입력값 삭제
+      searchInput.value = "";
+      searchInput.focus(); // 다시 입력 가능하도록 포커스 유지
+    } else {
+      // 입력값이 없을 때: 창 닫기
+      searchInput.classList.remove("show");
+      wrapper.classList.remove("expanded");
+      expanded = false;
+    }
+  });
+});
 
   
 //검색 시 구글로 이동동
