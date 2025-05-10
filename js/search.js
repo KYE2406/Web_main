@@ -1,4 +1,4 @@
-//검색창 애니메이션션
+//검색창 애니메이션
 document.addEventListener("DOMContentLoaded", function () {
   const searchBtn = document.getElementById("search_btn");
   const searchInput = document.getElementById("search_input");
