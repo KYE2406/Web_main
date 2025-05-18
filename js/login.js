@@ -98,6 +98,33 @@ function reset_login_fail() {
   setCookie("login_locked_until", "", -1);
 }
 
+async function decrypt_text2() {
+  const encrypted = sessionStorage.getItem("Session_Storage_pass2");
+  if (!encrypted) {
+    console.log("암호화된 세션 값 없음");
+    return;
+  }
+  const decrypted = await decryptText(encrypted); // Crypto2.js에 있는 함수
+  console.log("복호화된(Web Crypto):", decrypted);
+}
+
+async function init_logined() {
+  if (!sessionStorage) {
+    alert("세션 스토리지 지원 x");
+    return;
+  }
+
+  // Web Crypto 복호화
+  if (sessionStorage.getItem("Session_Storage_pass2")) {
+    await decrypt_text2();
+  }
+
+  // CryptoJS 복호화
+  if (sessionStorage.getItem("Session_Storage_pass")) {
+    decrypt_text();
+  }
+}
+
 function init(){ // 로그인 폼에 쿠키에서 가져온 아이디 입력
   const emailInput = document.getElementById('typeEmailX');
   const idsave_check = document.getElementById('idSaveCheck');
@@ -133,7 +160,7 @@ const check_xss = (input) => {
   return sanitizedInput;
 };
 
-const check_input = () => {
+const check_input = async () => {
   const isLocked = getCookie("login_locked");
   if (isLocked === "true") {
     const minutesLeft = getRemainingLockMinutes();
@@ -152,6 +179,12 @@ const check_input = () => {
 
   const emailValue = emailInput.value.trim();
   const passwordValue = passwordInput.value.trim();
+
+  const payload = {
+    id: emailValue,
+    exp: Math.floor(Date.now() / 1000) + 3600 // 1시간 (3600초)
+  };
+  const jwtToken = generateJWT(payload);
 
   // check_xss 함수로 이메일 Sanitize
   const sanitizedEmail = check_xss(emailValue);    
@@ -235,6 +268,8 @@ const check_input = () => {
 
 reset_login_fail();   // 🔧 성공 시 실패 횟수 초기화
 session_set();
+await session_set2();
+localStorage.setItem('jwt_token', jwtToken);
 login_count();
 loginForm.submit();
 };
@@ -242,13 +277,14 @@ loginForm.submit();
 // 세션 삭제
 function session_del() {
   if (sessionStorage) {
-    sessionStorage.removeItem("Session_Storage_test");
+    sessionStorage.clear();
     alert('로그아웃 버튼 클릭 확인 : 세션 스토리지를 삭제합니다.');
   } else {
     alert("세션 스토리지 지원 x");
   }
 }
 function logout() {
+  localStorage.removeItem('jwt_token');
   session_del(); // 세션 삭제
   location.href = "../index.html"; // 로그아웃 후 메인 페이지로 이동
 }

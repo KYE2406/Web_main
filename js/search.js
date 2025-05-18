@@ -35,8 +35,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
   
-//검색 시 구글로 이동동
-document.getElementByld("search.btn").addEventListener('clck', search.message);
+//검색 시 구글로 이동
+document.getElementById("search_btn").addEventListener('click', search_message);
 
 function search_message() {
     alert("검색을 수행합니다!");
