@@ -73,7 +73,6 @@ async function join(){ // 회원가입 기능
 
         try {
             session_set_signup(userInfo);
-
             alert("회원가입이 완료되었습니다.");  // 회원가입 알림
             form.submit(); // 제출
         } catch (e) {

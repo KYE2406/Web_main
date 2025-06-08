@@ -5,16 +5,79 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>팝업창 테스트</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
         <script type="text/javascript" defer src="../js/pop_up.js"></script>
         <script type="text/javascript" defer src="../js/popup_close.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <style>
+            html, body {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                background: #ffffff;
+                font-family: 'Inter', sans-serif;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1.2rem;
+            }
+
+            #divClock {
+                font-size: 2rem;
+                font-weight: bold;
+                color: #222;
+                line-height: 1.6;
+            }
+
+            label {
+                font-size: 0.9rem;
+                color: #666;
+            }
+
+            .btn {
+                padding: 0.6rem 2rem;
+                margin-top: 10px;
+                font-size: 1rem;
+                font-weight: 600;
+                background-color: #000;
+                color: #fff;
+                border: none;
+                transition: background-color 0.2s ease-in-out;
+            }
+
+            .btn:hover,
+            .btn:active {
+                background-color: #333;
+                color: #fff;
+            }
+
+            .btn:focus,
+            .btn:focus-visible {
+            outline: none !important;
+            box-shadow: none !important;
+            background-color: #333 !important;
+            color: #fff!important;
+            }
+        </style>
     </head>
     <body onload="show_clock()">
-        <h1 class="display-1"><i class="bi bi-alarm"></i> 팝업창 확인<br><br></h1>
-        <h1 class="display-4"><div id="divClock" class="clock"></div></h1>
-        <h1 class="display-4"><div id="Time" class="clock"></div></h1>
-        <input class="form-check-input" type="checkbox" id="check_popup" onclick="closePopup();">
-        <label class="form-check-label" for="flexCheckChecked">하루에 한번만 열기</label>
+        <!-- 팝업 오버레이 -->
+        <div id="popup" class="text-center">
+                <h3><i class="bi bi-alarm"></i> 현재 시각</h3>
+                <h4 class="display-4"><div id="divClock" class="clock"></div></h4>
+                <h4><div id="Time" class="clock"></div></h4>
+                <input class="form-check-input me-2" type="checkbox" id="check_popup" onclick="closePopup();">
+                <label class="form-check-label" for="check_popup">하루에 한 번만 보기</label>
+                <button class="btn btn-primary w-100" onclick="closePopup2()">닫기</button>
+            </div>
+        </div>
     </body>
 </html>

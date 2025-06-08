@@ -21,7 +21,7 @@ function getCookie(name) {
 
 function pop_up() {
     var cookieCheck = getCookie("popupYN");
-    if (cookieCheck != "N"){
+    if (!cookieCheck || cookieCheck !== "N"){
     window.open("../popup/popup.html", "팝업테스트", "width=400, height=300, top=10, left=10");
     }
 }
@@ -34,36 +34,35 @@ function closePopup() {
     }
 }
 
-function show_clock(){
-    let currentDate = new Date(); // 현재 시스템 날짜 객체 생성
-    let divClock = document.getElementById('divClock');
-    let msg = "현재 시간 : ";
-    if(currentDate.getHours()>12){ // 12시 보다 크면 오후 아니면 오전
-        msg += "오후";
-        msg += currentDate.getHours()-12+"시";
-    }
-    else {
-        msg += "오전";
-        msg += currentDate.getHours()+"시";
-    }
-
-    msg += currentDate.getMinutes()+"분";
-    msg += currentDate.getSeconds()+"초";
-    divClock.innerText = msg;
-
-    if (currentDate.getMinutes()>58) { //정각 1분전 빨강색 출력
-        divClock.style.color="red";
-    }
-    else {
-        divClock.style.color = "black";
-    }
-    setTimeout(show_clock, 1000); //1초마다 갱신
+function closePopup2() {
+    self.close();
 }
 
-function over(obj) {
-    obj.src="image/RIOTGAMES2.png";
-    }
-    function out(obj) {
-    obj.src="image/RIOTGAMES.png";
-    }
+function show_clock() {
+    const currentDate = new Date();
+    const divClock = document.getElementById('divClock');
+
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+
+    let hour = currentDate.getHours();
+    const ampm = hour >= 12 ? 'PM' : 'AM';
+    hour = hour % 12 || 12;
+    const hourStr = String(hour).padStart(2, '0');
+
+    const minute = String(currentDate.getMinutes()).padStart(2, '0');
+    const second = String(currentDate.getSeconds()).padStart(2, '0');
+
+    const dateStr = `${year}-${month}-${day}`;
+    const timeStr = `${hourStr}:${minute}:${second} ${ampm}`;
+
+    divClock.innerHTML = `${dateStr}<br>${timeStr}`;
+
+    divClock.style.color = currentDate.getMinutes() > 58 ? "red" : "#222";
+
+    setTimeout(show_clock, 1000);
+}
+
+
     

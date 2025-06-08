@@ -8,18 +8,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>LOL 메인화면</title>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet"><!--noto sans KR 폰트트-->
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet"><!--noto sans KR 폰트-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"> <!--부트스트랩 아이콘 사용 목적적-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"> <!--부트스트랩 아이콘 사용 목적-->
         <link rel="stylesheet" href="css/style.css">
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.6/purify.min.js"></script>
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
         <script type="text/javascript" defer src="js/search.js"></script><!--검색 관련-->
-        <!-- <script type="text/javascript" defer src="../js/crypto.js"></script>
-        <script type="text/javascript" defer src="../js/Crypto2.js"></script>
-        <script type="text/javascript" defer src="../js/session.js"></script>
-        <script type="text/javascript" defer src="../js/jwt_token.js"></script>
-        <script type="text/javascript" defer src="../js/login.js"></script> -->
         <script type="module" src="../js/login2.js" defer></script>
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </head>
@@ -27,8 +22,8 @@
         <nav class="navbar navbar-expand-lg bg-black fixed-top">
             <div class="container-fluid">
                 <div class="logo-container">
-                    <a class="navbar-brand" href="#"><img src="image/RIOTGAMES.png" width="85.5" height="24" onmouseover="over(this)" onmouseout="out(this)"></a>
-                    <a class="navbar-brand" href="index.html"><img src="image/Logo.png" width="39" height="29.5"></a>
+                    <a class="navbar-brand" href="/login/index_login.html"><img src="image/RIOTGAMES.png" width="85.5" height="24" onmouseover="over(this)" onmouseout="out(this)"></a>
+                    <a class="navbar-brand" href="/login/index_login.html"><img src="image/Logo.png" width="39" height="29.5"></a>
                 </div>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -46,7 +41,6 @@
                       게임정보
                     </a>
                     <ul class="dropdown-menu">
-                      <!--<li><hr class="dropdown-divider"></li>-->
                       <li><a class="dropdown-item" href="https://www.leagueoflegends.com/ko-kr/how-to-play/">기본정보</a></li>
                       <li><a class="dropdown-item" href="https://www.leagueoflegends.com/ko-kr/champions/">챔피언</a></li>
                       <li><a class="dropdown-item" href="https://www.leagueoflegends.com/ko-kr/news/tags/patch-notes/">패치 노트</a></li>
@@ -70,14 +64,6 @@
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      이벤트
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">PC방 이벤트</a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       알아보기
                     </a>
                     <ul class="dropdown-menu">
@@ -96,27 +82,13 @@
                   <li class="nav-item">
                     <a class="nav-link" href="https://support.riotgames.com/hc/ko" target="_blank">고객지원</a>
                   </li>
-                  <!--<li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                  </li>-->
-                  <!--<li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                  </li>-->
+                  <li class="nav-item">
+                    <a class="nav-link" href="/login/profile.html">개인 프로필</a>
+                  </li>
                 </ul>
-                <!-- 검색창 + 버튼 -->
-                <!-- <form class="d-flex" role="search" onsubmit="return googleSearch();">
-                  <div id="search-container" class="d-flex align-items-center" style="position: relative;">
-                  <button class="btn btn-dark text-white" id="search_btn" type="submit" 
-                               style="background-color: #333; color: white; border: none; padding: 6.5px 12px; border-radius: 17px; font-size: 21px;">
-                    <i class="bi bi-search"></i>
-                    </button>
-                    <input class="form-control me-2" id="search_input" name="q" type="search" placeholder="" aria-label="Search"
-                           style="width: 0; opacity: 0; transition: all 0.3s ease; overflow: hidden; border: none; background-color: #333; color: white;">
-                  </div>
-                </form>           -->
                 <form class="d-flex align-items-center" role="search" onsubmit="return googleSearch();">
                   <div class="search-wrapper">
-                    <button id="search_btn" type="button">
+                    <button id="search_button_msg" type="button">
                       <i class="bi bi-search"></i>
                     </button>
                     <input id="search_input" type="search" placeholder="" aria-label="Search">
@@ -128,27 +100,86 @@
             </div>
           </nav>
         <div style="display: flex;justify-content: center;">
-            <a href="index.html" target="_blank"><img src="image/main.png" class="img-fluid" width="1900" height="800"></a>
+            <a href="/login/index_login.html" target="_blank"><img src="image/main.png" class="img-fluid" width="1900" height="800"></a>
         </div>
-        <div style="display: flex; justify-content: center;">
-            <table border="1">
-            <caption style="color: white; caption-side: top; text-align: center; width: 100%;">인기 캐릭터</caption>
-            <tbody>
-            <tr>
-            <td style="border: 1px solid white; padding: 5px; color: white; text-align: center;">사이온</td>
-            <td style="border: 1px solid white; padding: 5px; color: white; text-align: center;">아리</td>
-            <td style="border: 1px solid white; padding: 5px; color: white; text-align: center;">가렌</td>
-            </tr>
-            <tr>
-            <td style="border: 1px solid white; padding: 5px; color: white; text-align: center;">카직스</td>
-            <td style="border: 1px solid white; padding: 5px; color: white; text-align: center;">루시안</td>
-            <td style="border: 1px solid white; padding: 5px; color: white; text-align: center;">바이</td>
-            </tr>
+        <div class="d-flex justify-content-center">
+          <table class="table table-bordered text-center align-middle">
+          <colgroup>
+            <col style="width: 20%;">
+            <col style="width: 20%;">
+            <col style="width: 20%;">
+            <col style="width: 20%;">
+            <col style="width: 20%;">
+          </colgroup>
+            <!-- 표 제목 -->
+            <thead class="table-dark">
+              <tr>
+                <th colspan="5">LOL 챔피언</th>
+              </tr>
+            </thead>
+
+            <!-- 탑 라인 -->
+            <tbody class="table-secondary">
+              <tr>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Garen.png" width="64"><div>가렌</div></td>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Camille.png" width="64"><div>카밀</div></td>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Shen.png" width="64"><div>쉔</div></td>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Mordekaiser.png" width="64"><div>모데카이저</div></td>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Darius.png" width="64"><div>다리우스</div></td>
+              </tr>
             </tbody>
-            </table>
+
+            <!-- 정글 -->
+            <tbody class="table-success">
+              <tr>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Khazix.png" width="64"><div>카직스</div></td>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/LeeSin.png" width="64"><div>리신</div></td>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Vi.png" width="64"><div>바이</div></td>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Viego.png" width="64"><div>비에고</div></td>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Shaco.png" width="64"><div>샤코</div></td>
+              </tr>
+            </tbody>
+
+            <!-- 미드 -->
+            <tbody class="table-warning">
+              <tr>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Yasuo.png" width="64"><div>야스오</div></td>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Zed.png" width="64"><div>제드</div></td>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Akali.png" width="64"><div>아칼리</div></td>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Katarina.png" width="64"><div>카타리나</div></td>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Ahri.png" width="64"><div>아리</div></td>
+              </tr>
+            </tbody>
+
+            <!-- 원딜 -->
+            <tbody class="table-primary">
+              <tr>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Jinx.png" width="64"><div>징크스</div></td>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Jhin.png" width="64"><div>진</div></td>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Ezreal.png" width="64"><div>에즈리얼</div></td>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Lucian.png" width="64"><div>루시안</div></td>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Varus.png" width="64"><div>바루스</div></td>
+              </tr>
+            </tbody>
+
+            <!-- 서포터 -->
+            <tbody class="table-info">
+              <tr>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Bard.png" width="64"><div>바드</div></td>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Sona.png" width="64"><div>소나</div></td>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Thresh.png" width="64"><div>쓰레쉬</div></td>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Yuumi.png" width="64"><div>유미</div></td>
+                <td><img src="https://ddragon.leagueoflegends.com/cdn/13.6.1/img/champion/Pyke.png" width="64"><div>파이크</div></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <hr>
-        <div style="background-color: black; display: flex; justify-content: center;">
+        <!-- 링크 줄 -->
+        <div class="mt-3 mb-5" style="display: flex; justify-content: center;">
+          <a href="https://www.leagueoflegends.com/ko-kr/" target="_blank">롤 웹사이트 접속하기</a>
+        </div>
+        <hr style="color: white;">
+        <div style="background-color: black; display: flex; justify-content: center; padding-bottom: 30px; padding-top: 30px;">
             <h3 style="font-size: 24px; font-weight: bold; font-style: italic; color: white; font-family: '굴림';">라이엇 게임 회사 정보 2024년 X월 작성됨</h3>
         </div>
     </body>
