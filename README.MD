@@ -12,3 +12,4 @@ This project is a starting point for a Web application.
 ## 9주차 - 팝업 쿠키 설정, 로그인 입력 검증(XSS, 비밀번호 조건 강화)
 ## 10주차 - 로그인 창 쿠키 및 세션 구현
 ## 11주차 - 로그인 세션(암호화/복호화) 및 JWT 토근 기능 구현
+## 12주차 - 모듈화, 객체 저장 및 회원가입 기능 구현

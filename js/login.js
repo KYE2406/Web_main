@@ -1,3 +1,8 @@
+import { session_set, session_set2, session_get_signup, session_get, session_get2, session_check } from './session.js';
+import { encodeByAES256, decodeByAES256, encrypt_text, decrypt_text } from './crypto.js';
+import { getAesKey, encryptText, decryptText } from './Crypto2.js';
+import { generateJWT, verifyJWT, isAuthenticated, checkAuth } from './jwt_token.js';
+
 // 아이디 저장
 function setCookie(name, value, expiredays) {
     var date = new Date();
@@ -105,7 +110,7 @@ async function decrypt_text2() {
     return;
   }
   const decrypted = await decryptText(encrypted); // Crypto2.js에 있는 함수
-  console.log("복호화된(Web Crypto):", decrypted);
+  console.log("복호화된 값:", decrypted);
 }
 
 async function init_logined() {
@@ -128,14 +133,31 @@ async function init_logined() {
 function init(){ // 로그인 폼에 쿠키에서 가져온 아이디 입력
   const emailInput = document.getElementById('typeEmailX');
   const idsave_check = document.getElementById('idSaveCheck');
+  const loginBtn = document.getElementById('login_btn');
+
+  if (!emailInput || !idsave_check || !loginBtn) {
+    // 로그인 페이지가 아닌 경우 (예: logout.html)
+    return;
+  }
+
   let get_id = getCookie("id");
+  
   if(get_id) {
     emailInput.value = get_id;
     idsave_check.checked = true;
   }
+
+  if (loginBtn) {
+    loginBtn.addEventListener('click', check_input);
+  }
+
   session_check(); // 세션 유무 검사
   displayLoginStatus();
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  init();
+});
 
 // 로그인 횟수 카운터
 function login_count() {
@@ -143,6 +165,14 @@ function login_count() {
     count++;
     setCookie("login_cnt", count, 7);
     console.log("로그인 횟수:", count);
+}
+
+// 로그아웃 횟수 카운터
+function logout_count() {
+  let count = parseInt(getCookie("logout_cnt")) || 0;
+  count++;
+  setCookie("logout_cnt", count, 30); // 30일 동안 유지 (원하는 기간으로 조절 가능)
+  console.log("누적 로그아웃 횟수:", count);
 }
 
 const check_xss = (input) => {
@@ -172,7 +202,7 @@ const check_input = async () => {
   }
 
   const loginForm = document.getElementById('login_form');
-  const loginBtn = document.getElementById('login_btn');
+
   const emailInput = document.getElementById('typeEmailX');
   const passwordInput = document.getElementById('typePasswordX');
   const idsave_check = document.getElementById('idSaveCheck');
@@ -212,30 +242,16 @@ const check_input = async () => {
   }
 
   // 글자 수 제한
-  if (emailValue.length < 5 || emailValue.length > 10) {
-    alert('이메일은 5자 이상 10자 이하로 입력해야 합니다.');
+  if (emailValue.length < 5 || emailValue.length > 30) {
+    alert('이메일은 5자 이상 30자 이하로 입력해야 합니다.');
     return false;
   }
 
-  if (passwordValue.length < 12 || passwordValue.length > 15) {
-    alert('비밀번호는 12자 이상 15자 이하로 입력해야 합니다.');
+  const pwRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]).{8,15}$/;
+  if (!pwRegex.test(passwordValue)) {
+    alert('비밀번호는 8~15자이며, 대소문자, 숫자, 특수문자를 각각 1개 이상 포함해야 합니다.');
     login_failed();
     return false;
-  }
-
-  const hasSpecialChar = passwordValue.match(/[!,@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/) !== null;
-  if (!hasSpecialChar) {
-  alert('패스워드는 특수문자를 1개 이상 포함해야 합니다.');
-  login_failed();
-  return false;
-  }
-
-  const hasUpperCase = passwordValue.match(/[A-Z]+/) !== null;
-  const hasLowerCase = passwordValue.match(/[a-z]+/) !== null;
-  if (!hasUpperCase || !hasLowerCase) {
-  alert('패스워드는 대소문자를 1개 이상 포함해야 합니다.');
-  login_failed();
-  return false;
   }
 
     // 3글자 이상 반복 금지 예: abcabc, 123123
@@ -278,13 +294,17 @@ loginForm.submit();
 function session_del() {
   if (sessionStorage) {
     sessionStorage.clear();
-    alert('로그아웃 버튼 클릭 확인 : 세션 스토리지를 삭제합니다.');
   } else {
     alert("세션 스토리지 지원 x");
   }
 }
+
 function logout() {
   localStorage.removeItem('jwt_token');
   session_del(); // 세션 삭제
+  logout_count();
+  alert('로그아웃 완료: 세션 스토리지와 토큰이 삭제되었습니다.');
   location.href = "../index.html"; // 로그아웃 후 메인 페이지로 이동
 }
+
+export { setCookie, setCookieMinutes, getCookie, getRemainingLockMinutes, displayLoginStatus, login_failed, reset_login_fail, decrypt_text2, init_logined, init, login_count, logout_count, check_xss, check_input, session_del, logout };

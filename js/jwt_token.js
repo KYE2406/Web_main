@@ -52,3 +52,5 @@ function checkAuth() { // 인증 검사 수행
         window.location.href = '../login/login.html'; // 로그인 페이지 이동
     }
 }
+
+export { generateJWT, verifyJWT, isAuthenticated, checkAuth };

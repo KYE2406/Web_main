@@ -1,3 +1,5 @@
+import { session_set, session_get, session_check } from './session.js';
+
 const base64Key = "MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=";
 const ivString = "iv-123456789012"; // GCM은 12바이트 IV 필요
 
@@ -53,3 +55,5 @@ async function decryptText(base64CipherText) {
     return null;
   }
 }
+
+export { getAesKey, encryptText, decryptText };
